@@ -1,0 +1,33 @@
+name: Create and publish a Docker image
+
+on:
+  push:
+    paths:
+      - 'Dockerfile'
+      - 'known_hosts.preload'
+      - '.github/workflows/container.yml'
+  workflow_dispatch:
+
+jobs:
+  build:
+    uses: docker/github-builder/.github/workflows/build.yml@v1
+    permissions:
+      contents: read
+      id-token: write
+      packages: write
+    with:
+      output: image
+      push: true
+      sign: false
+      platforms: linux/amd64,linux/arm64
+      meta-images: ghcr.io/${{ github.repository }}
+      meta-tags: |
+        type=semver,pattern={{version}}
+        type=semver,pattern={{major}}.{{minor}}
+        type=semver,pattern={{major}}
+        type=sha
+    secrets:
+      registry-auths: |
+        - registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
