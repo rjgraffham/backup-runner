@@ -1,4 +1,4 @@
-FROM docker.io/library/alpine:latest@sha256:c6b073f8e9e58d881f6ffba6ebf3b9ebd60b9e7d6e8337018c0e68bb5c356873
+FROM docker.io/library/alpine:latest@sha256:be2656061b536c1883c4034790e21d0a09c5aaaf51968b89368a3c0371ea2c9a
 
 LABEL org.opencontainers.image.source=https://github.com/rjgraffham/backup-runner
 LABEL org.opencontainers.image.description="rsync.net backup runner (alpine + rsync + ssh)"
