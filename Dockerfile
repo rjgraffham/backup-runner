@@ -13,4 +13,4 @@ COPY excludes /excludes
 COPY known_hosts.preload /root/.ssh/known_hosts
 RUN chmod go-rwx /root/.ssh/known_hosts
 
-CMD [ "rsync", "-uhavz", "--delete-after", "-e", "ssh -i /secrets/ssh_key", "-M--fake-super", "--exclude-from=/excludes", "/data/", "zh6484@zh6484.rsync.net:cluster-data" ]
+CMD [ "rsync", "-uhavz", "--delete-after", "-e", "ssh -i /secrets/ssh-privatekey", "-M--fake-super", "--exclude-from=/excludes", "/data/", "zh6484@zh6484.rsync.net:cluster-data" ]
